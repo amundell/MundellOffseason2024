@@ -71,7 +71,7 @@ public final class Constants
   public static final int PodiusmShotRPM = 5000;
   public static final double PodiumShotAngle = 55;
 
-  public static final double IntakeAngle = 70;
+  public static final double IntakeAngle = 75;
   public static final double PurgeAngle = 40;
 
   public static double tiltkP = 0.012;
