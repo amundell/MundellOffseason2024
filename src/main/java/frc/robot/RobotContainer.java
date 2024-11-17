@@ -52,14 +52,8 @@ public class RobotContainer {
   /** The container for the robot. Cotains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    
-    NamedCommands.registerCommand("Intake", Commands.parallel(m_intakeSubsystem.runIntakeCommand(),m_tiltSubsystem.tiltPIDControl(Constants.IntakeAngle)).until(()->m_intakeSubsystem.hasNote()));
-    NamedCommands.registerCommand("Shoot", m_intakeSubsystem.shootIntakeCommand().withTimeout(1));
-    NamedCommands.registerCommand("PodiumAim", Commands.parallel(m_tiltSubsystem.tiltPIDControl(50),m_shooterSubsystem.setShooterVoltageCommand(10)).withTimeout(2));
-    NamedCommands.registerCommand("CloseAim", Commands.parallel(m_tiltSubsystem.tiltPIDControl(120),m_shooterSubsystem.setShooterVoltageCommand(10)).withTimeout(2));
     // Configure the trigger bindings.
     configureBindings();
-
 
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
@@ -113,6 +107,12 @@ public class RobotContainer {
     Command AutoTilt = m_tiltSubsystem.autoTilt(()->Constants.distanceToAngle.get(drivebase.getDistanceToSpeaker()));
    
     m_tiltSubsystem.setDefaultCommand(AutoTilt);
+
+    NamedCommands.registerCommand("Intake", Commands.parallel(m_intakeSubsystem.runIntakeCommand(),m_tiltSubsystem.tiltPIDControl(Constants.IntakeAngle)).until(()->m_intakeSubsystem.hasNote()));
+    NamedCommands.registerCommand("Shoot", m_intakeSubsystem.shootIntakeCommand().withTimeout(1));
+    NamedCommands.registerCommand("PodiumAim", Commands.parallel(m_tiltSubsystem.tiltPIDControl(Constants.PodiumShotAngle),m_shooterSubsystem.setShooterVoltageCommand(10)).withTimeout(2));
+    NamedCommands.registerCommand("CloseAim", Commands.parallel(m_tiltSubsystem.tiltPIDControl(Constants.WallShotAngle),m_shooterSubsystem.setShooterVoltageCommand(10)).withTimeout(1.5));
+    NamedCommands.registerCommand("AutoAim", Commands.parallel(AutoTilt, drivebase.aimAtSpeaker(()->0,()->0,1),m_shooterSubsystem.setShooterVoltageCommand(10)).withTimeout(2));
 
   }
 
