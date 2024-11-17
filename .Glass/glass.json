@@ -1,0 +1,39 @@
+{
+  "NetworkTables": {
+    "Persistent Values": {
+      "open": false
+    },
+    "Retained Values": {
+      "open": false
+    },
+    "transitory": {
+      "SmartDashboard": {
+        "Vision": {
+          "double[]##v_/SmartDashboard/Vision/Pose (mt2)": {
+            "open": true
+          },
+          "open": true
+        },
+        "open": true
+      },
+      "limelight": {
+        "double[]##v_/limelight/rawfiducials": {
+          "open": true
+        },
+        "open": true
+      }
+    },
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/Pigeon 2 (v6) [0]": "Gyro"
+    }
+  },
+  "NetworkTables Info": {
+    "visible": true
+  },
+  "NetworkTables Settings": {
+    "mode": "Client (NT3)",
+    "serverTeam": "7457"
+  }
+}
